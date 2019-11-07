@@ -32,7 +32,7 @@ public class MSF {
         for (int i = 0; i < s; i++) {
             index = random.nextInt(N);
             int X = chooseX();
-            if (BFS.Search(index, X, whight)) {
+            if (BFS.search(index, X, whight)) {
                 output += 1;
             };
         }
