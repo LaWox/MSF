@@ -7,6 +7,7 @@ public class MSF {
     static float approx;
     static int s;
     static Random random = new Random();
+    static double SCONST = 2;
     
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -40,10 +41,17 @@ public class MSF {
     } 
 
     static void chooseS() {
-        s = 3;
+        s = (int) Math.ceil(SCONST * 1/(Math.pow(approx, 2)));
     }
 
     public static int chooseX() {
-        return 4;
+        double rand;
+        while (true) {
+            rand = random.nextDouble();
+            if (rand != 0) {
+                break;
+            } 
+        }
+        return  (int) Math.ceil(1/ rand);
     }
 }
