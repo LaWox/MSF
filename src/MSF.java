@@ -12,7 +12,7 @@ public class MSF {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         N = sc.nextInt();
-        approx = sc.nextFloat();
+        approx = 1 - sc.nextFloat();
         W = sc.nextInt();
         sc.close();
         chooseS();
