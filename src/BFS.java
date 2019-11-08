@@ -16,6 +16,13 @@ public class BFS{
             if(queue.size() != 0){
 
                 if(!visited.contains(queue.get(0))){
+
+                    /*
+                    TestGraph test = new TestGraph();
+                    neighbourData = test.getNeighbours(queue.get(0));
+                    neighbours = handleNeighbours(neighbourData);
+                    */
+                    
                     neighbours = getNeighbours(queue.get(0), weight);
                     len += 1;
                     visited.add(queue.get(0));
@@ -57,8 +64,21 @@ public class BFS{
                 nodes.add(nodeIndex);
             }
         }
-
         input.close();
+        return nodes;
+    }
+
+    static private ArrayList<Integer> handleNeighbours(String str, int weight){
+        ArrayList<Integer> nodes = new ArrayList<>();
+        
+        String[] strList = str.split(" ");
+        Integer noNodes = Integer.valueOf(strList[0]);
+        for(int i = 0; i < noNodes; i+=2){
+            int nodeIndex = Integer.valueOf(strList[i+1]);
+            if(Integer.valueOf(strList[i+1]) <= weight){
+                nodes.add(nodeIndex);
+            }
+        }
         return nodes;
     }
 }
