@@ -3,23 +3,23 @@ import java.util.Scanner;
 import java.io.*;
 
 public class TestGraph{
+    
+    ArrayList<String> nodes = new ArrayList<>();
+        
 
-    static ArrayList<String> nodes = new ArrayList<>();
-
-    public TestGraph(){
-        //String filepath;
-        //ArrayList<String> nodes = new ArrayList<>();
-
+    public TestGraph(String filepath){
+        this.nodes = new ArrayList<>();
+        readFile(filepath, nodes);
     }
 
-    public static void readFile(String filepath){
+    public void readFile(String filepath, ArrayList<String> nodes){
         File file = new File(filepath);
         try{
         Scanner input = new Scanner(file);
-        nodes.add(input.next());
+        nodes.add(input.nextLine());
 
         while(input.hasNext()){
-            nodes.add(input.next());
+            nodes.add(input.nextLine());
         }
         input.close(); }
 
@@ -30,13 +30,14 @@ public class TestGraph{
 
     }
 
-    public static void getParameters(){
-        System.out.println(nodes.get(0));
+    public String getParameters(){
+        return this.nodes.get(0);
+
     }
 
-    public static void getNode(int index){
+    public String getNode(int index){
         int arrIndx=index + 1;
-        System.out.println(nodes.get(arrIndx));
+        return this.nodes.get(arrIndx);
     }
 
 
