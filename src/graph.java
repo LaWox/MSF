@@ -51,14 +51,17 @@ public class Graph {
     }
 
     public static void addEdge() {
+        int edgeWeight = 1 + rand.nextInt(W);
+        weight += edgeWeight;
+
         int inIndex = rand.nextInt(inSet.size());
         int outIndex = rand.nextInt(outSet.size());
 
         int inNode = inSet.elementAt(inIndex);
         int outNode = outSet.elementAt(outIndex);
 
-        graph[inNode].append(" " + outNode);
-        graph[outNode].append(" " + inNode);
+        graph[inNode].append(" " + outNode + " " + edgeWeight);
+        graph[outNode].append(" " + inNode + " " + edgeWeight);
 
         inSet.add(outNode);
         outSet.remove(outIndex);
@@ -67,7 +70,7 @@ public class Graph {
     static void renderGraph() {
         for (StringBuilder strB : graph) {
             String[] strList= strB.toString().split(" ");
-            int length = strList.length - 1;
+            int length = (strList.length - 1) / 2;
             sb.append(length + strB.toString() + "\n");
         }
     }
@@ -77,6 +80,7 @@ public class Graph {
             BufferedWriter writer = new BufferedWriter(new FileWriter(FILENAME, false));
             writer.append(sb.toString());
             writer.close();
+            System.out.println(weight);
         } catch(Exception e) {
             System.out.println("ERROR: e");
         }
