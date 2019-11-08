@@ -3,27 +3,36 @@ import java.util.Scanner;
 
 public class BFS{
 
-    // bfs search 
+    // breadth firdt search 
     static public boolean search(int index, int maxHops, int weight){
         int len = 0;
         ArrayList<Integer> queue = new ArrayList<>();
+        ArrayList<Integer> visited  = new ArrayList<>();
+        
         queue.add(index);
         ArrayList<Integer> neighbours = new ArrayList<>();
 
         while(len < maxHops){
             if(queue.size() != 0){
-                neighbours = getNeighbours(queue.get(0), weight);
-                len += 1;
-                for(Integer node: neighbours){
-                    queue.add(node);
+
+                if(!visited.contains(queue.get(0))){
+                    neighbours = getNeighbours(queue.get(0), weight);
+                    len += 1;
+                    visited.add(queue.get(0));
+                    // add to neighbour array
+                    for(Integer node: neighbours){
+                        queue.add(node);
+                    }
                 }
+                queue.remove(0);
             }
             // if empty we've explored the subgraph
             else{
                 return true;
             }
         }
-         
+        
+        // we didn't explore the subgraph
         return false;
     }
 
