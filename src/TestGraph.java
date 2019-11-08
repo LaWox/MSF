@@ -30,8 +30,8 @@ public class TestGraph{
 
     }
 
-    public static void getParameters(){
-        System.out.println(nodes.get(0));
+    public static String getParameters(){
+        return nodes.get(0));
     }
 
     public static String getNode(int index){
