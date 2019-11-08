@@ -16,7 +16,7 @@ public class BFS{
         while(len < maxHops){
             if(queue.size() != 0){
                 if(!visited.contains(queue.get(0))){
-                    
+
                     String neighbourData = test.getNode(queue.get(0));
                     neighbours = handleNeighbours(neighbourData, weight);
                     
@@ -43,16 +43,17 @@ public class BFS{
 
     //Kattis comm
     static private ArrayList<Integer> getNeighbours(int index, int maxWeight){
-        int nodeIndex;
+        int nodeIndex; // index of of start node
+        int noNodes;  // no of neighbours
+        ArrayList<Integer> nodes = new ArrayList<>();
+
+        // scanner for input from Kattis
+        Scanner input = new Scanner(System.in);
 
         // send data to Kattis
         System.out.println(index);
 
-        // scan input from Kattis
-        Scanner input = new Scanner(System.in);
-        
-        int noNodes = input.nextInt();
-        ArrayList<Integer> nodes = new ArrayList<>();
+        noNodes = input.nextInt();
 
         // add nodes that have  correct weight to the array
         for(int i = 0; i < noNodes; i++){
