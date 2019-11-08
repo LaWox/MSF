@@ -17,13 +17,13 @@ public class BFS{
 
                 if(!visited.contains(queue.get(0))){
 
-                    /*
-                    TestGraph test = new TestGraph();
-                    neighbourData = test.getNeighbours(queue.get(0));
-                    neighbours = handleNeighbours(neighbourData);
-                    */
                     
-                    neighbours = getNeighbours(queue.get(0), weight);
+                    TestGraph test = new TestGraph();
+                    String neighbourData = test.getNode(queue.get(0));
+                    neighbours = handleNeighbours(neighbourData, weight);
+                    
+                    
+                    //neighbours = getNeighbours(queue.get(0), weight);
                     len += 1;
                     visited.add(queue.get(0));
                     // add to neighbour array
@@ -80,5 +80,9 @@ public class BFS{
             }
         }
         return nodes;
+    }
+
+    public static void main(String[] args){
+        search(5, 3, 2);
     }
 }

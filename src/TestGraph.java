@@ -34,9 +34,9 @@ public class TestGraph{
         System.out.println(nodes.get(0));
     }
 
-    public static void getNode(int index){
+    public static String getNode(int index){
         int arrIndx=index + 1;
-        System.out.println(nodes.get(arrIndx));
+        return nodes.get(arrIndx);
     }
 
 
