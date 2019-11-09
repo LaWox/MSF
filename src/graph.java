@@ -6,11 +6,11 @@ import java.util.Vector;
 public class Graph {
     static StringBuilder sb = new StringBuilder();
     static int N;
-    static double approx = 1.2;
+    static double approx = 1.01;
     static int W;
 
     static String FILENAME = "graph.txt";
-    static int[] Nspan = {10000, 12000};
+    static int[] Nspan = {100000, 120000};
     static int[] Wspan = {1, 10};
 
     static Random rand = new Random();
@@ -23,9 +23,15 @@ public class Graph {
     static Vector<Integer> outSet = new Vector<Integer>();
 
     public static void main(String[] args) {
+       createGraph();
+    }
+
+    public static void createGraph() {
         init();
-        while (!outSet.isEmpty()) {
+        int n = 0;
+        while (!outSet.isEmpty() || n == 50000) {
             addEdge();
+            n++;
         }
         renderGraph();
         outputGraph();
@@ -46,7 +52,7 @@ public class Graph {
 
         graph = new StringBuilder[N];
 
-        sb.append(N + "\n" + approx + "\n" + W + "\n");
+        sb.append(N + " " + approx + " " + W + "\n");
         initSets();
     }
 
@@ -73,6 +79,7 @@ public class Graph {
             int length = (strList.length - 1) / 2;
             sb.append(length + strB.toString() + "\n");
         }
+        sb.append(weight);
     }
 
     static void outputGraph() {

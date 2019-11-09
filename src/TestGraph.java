@@ -15,16 +15,15 @@ public class TestGraph{
     public void readFile(String filepath, ArrayList<String> nodes){
         File file = new File(filepath);
         try{
-        Scanner input = new Scanner(file);
-        nodes.add(input.nextLine());
-
-        while(input.hasNext()){
+            Scanner input = new Scanner(file);
             nodes.add(input.nextLine());
-        }
-        input.close(); }
 
-        catch (FileNotFoundException e){
-            System.out.println("Wrong file path");
+            while(input.hasNext()){
+                nodes.add(input.nextLine());
+            }
+            input.close(); 
+        } catch (FileNotFoundException e){
+            //System.out.println("Wrong file path");
             return;
         }
 
@@ -33,6 +32,22 @@ public class TestGraph{
     public String getParameters(){
         return this.nodes.get(0);
 
+    }
+
+    public String evalAwnser(float awnser) {
+        StringBuilder sb = new StringBuilder();
+        int w = Integer.valueOf(nodes.get(nodes.size() - 1));
+        float approx = Float.valueOf(nodes.get(0).split(" ")[1]);
+
+        sb.append("Awnsewr: " + awnser + " W: " + w);
+
+        if (awnser >= w * (2-approx) && awnser <= w * approx) {
+            sb.append(" OK!");
+        } else {
+            sb.append(" NOT OK! :(");
+        }
+
+        return sb.toString();
     }
 
     public String getNode(int index){

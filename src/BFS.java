@@ -1,35 +1,47 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class BFS{
 
+    static Scanner sc;
+    static HashMap<Integer, Boolean> visited = new HashMap<>();
+    static Queue<Integer> queue = new LinkedList<>();
+
     // breadth firdt search 
-    static public boolean search(int index, int maxHops, int weight){
+
+
+    
+    static public boolean search(int index, int maxHops, int weight, Scanner s){
+        Boolean a = null;
+        sc = s;
         int len = 0;
-        ArrayList<Integer> queue = new ArrayList<>();
-        ArrayList<Integer> visited  = new ArrayList<>();
+        
+        visited = new HashMap<>();
+        queue = new LinkedList<>();
+        //ArrayList<Integer> queue = new ArrayList<>();
+        //ArrayList<Integer> visited  = new ArrayList<>();
         
         queue.add(index);
         ArrayList<Integer> neighbours = new ArrayList<>();
-        TestGraph test = new TestGraph("Graph1.txt");
 
         while(len < maxHops){
             if(queue.size() != 0){
-                if(!visited.contains(queue.get(0))){
-
-                    String neighbourData = test.getNode(queue.get(0));
-                    neighbours = handleNeighbours(neighbourData, weight);
+                int curentNode = queue.remove();
+                if(visited.get(curentNode) == null){
                     
-                    //neighbours = getNeighbours(queue.get(0), weight);
+                    if (Main.DEBUG) {
+                        String neighbourData = Main.test.getNode(curentNode);
+                        handleNeighbours(neighbourData, weight);
+                    } else {
+                        neighbours = getNeighbours(curentNode, weight);
+                    }
                     len += 1;
-                    visited.add(queue.get(0));
+                    visited.put(curentNode, true);
 
                     // add to neighbour array
-                    for(Integer node: neighbours){
+                    /*for(Integer node: neighbours){
                         queue.add(node);
-                    }
+                    }*/
                 }
-                queue.remove(0);
             }
             // if empty we've explored the subgraph
             else{
@@ -47,28 +59,31 @@ public class BFS{
         int noNodes;  // no of neighbours
         ArrayList<Integer> nodes = new ArrayList<>();
 
-        // scanner for input from Kattis
-        Scanner input = new Scanner(System.in);
+        
 
         // send data to Kattis
         System.out.println(index);
 
-        noNodes = input.nextInt();
+        // scanner for input from Kattis
+        //Scanner input = new Scanner(System.in);
+
+        noNodes = sc.nextInt();
+        
 
         // add nodes that have  correct weight to the array
         for(int i = 0; i < noNodes; i++){
-            nodeIndex = input.nextInt();
+            nodeIndex = sc.nextInt();
 
-            if(input.nextInt() <= maxWeight){
+            int w = sc.nextInt();
+            if(w <= maxWeight){
                 nodes.add(nodeIndex);
             }
         }
-        input.close();
         return nodes;
     }
 
-    static private ArrayList<Integer> handleNeighbours(String str, int weight){
-        ArrayList<Integer> nodes = new ArrayList<>();
+    static private void handleNeighbours(String str, int weight){
+        //ArrayList<Integer> nodes = new ArrayList<>();
 
         String[] strList = str.split(" ");
         Integer noNodes = Integer.valueOf(strList[0]);
@@ -79,13 +94,12 @@ public class BFS{
             int nodeIndex = Integer.valueOf(strList[i+1]);
             if(Integer.valueOf(strList[i+2]) <= weight){
                 //System.out.println("added node: " + nodeIndex);
-                nodes.add(nodeIndex);
+                queue.add(nodeIndex);
             }
         }
-        return nodes;
+        //return nodes;
     }
 
     public static void main(String[] args){
-        search(0, 2, 2);
     }
 }
