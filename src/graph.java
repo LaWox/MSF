@@ -6,12 +6,12 @@ import java.util.Vector;
 public class Graph {
     static StringBuilder sb = new StringBuilder();
     static int N;
-    static double approx = 1.01;
+    static double approx = 1.1;
     static int W;
 
     static String FILENAME = "graph.txt";
     static int[] Nspan = {100000, 120000};
-    static int[] Wspan = {1, 10};
+    static int[] Wspan = {1, 3};
 
     static Random rand = new Random();
 
