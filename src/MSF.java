@@ -7,16 +7,37 @@ public class MSF {
     static float approx;
     static int s;
     static Random random = new Random();
-    static double SCONST = 2;
+    static double SCONST = 1;
+    static Scanner sc = new Scanner(System.in);
     
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        N = sc.nextInt();
-        approx = 1 - sc.nextFloat();
-        W = sc.nextInt();
+        runMSF();
+    }
+
+    public static void runMSF() {
+        if (Main.DEBUG) {
+            TestInit();
+            chooseS();
+            System.out.println(Main.test.evalAwnser(approxMSTweight()));
+        } else {
+            kattisInint();
+            chooseS();
+            System.out.println("end " + approxMSTweight());
+        }
         sc.close();
-        chooseS();
-        System.out.println("end " + approxMSTweight());
+    }
+
+    public static void kattisInint() {  
+        N = sc.nextInt();
+        approx = Float.valueOf(sc.next()) - 1;
+        W = sc.nextInt(); 
+    }
+
+    public static void TestInit() {
+        String[] par = Main.test.getParameters().split(" ");
+        N = Integer.valueOf(par[0]);
+        approx = Float.valueOf(par[1]) -1;
+        W = Integer.valueOf(par[2]);
     }
 
     public static float approxMSTweight() {
@@ -33,15 +54,18 @@ public class MSF {
         for (int i = 0; i < s; i++) {
             index = random.nextInt(N);
             int X = chooseX();
-            if (BFS.search(index, X, whight)) {
+            if (BFS.search(index, X, whight, sc)) {
                 output += 1;
             };
         }
-        return output;
+        return (N/s) * output;
     } 
 
     static void chooseS() {
-        s = (int) Math.ceil(SCONST * 1/(Math.pow(approx, 2)));
+        //s = (int) Math.ceil(Math.pow(W, 3) * Math.log(N / Math.pow(approx, 2))); 
+        s = (int) Math.ceil(SCONST * (1/ (Math.pow(approx, 2))));
+        System.out.println(approx);
+        System.out.println(s);
     }
 
     public static int chooseX() {
