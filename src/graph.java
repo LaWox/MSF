@@ -11,7 +11,7 @@ public class Graph {
 
     static String FILENAME = "graph.txt";
     static int[] Nspan = {100000, 120000};
-    static int[] Wspan = {1, 3};
+    static int[] Wspan = {1, 10};
 
     static Random rand = new Random();
 

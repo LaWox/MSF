@@ -31,7 +31,8 @@ public class BFS{
                     if (Main.DEBUG) {
                         String neighbourData = Main.test.getNode(curentNode);
                         handleNeighbours(neighbourData, weight);
-                    } else {
+                    }
+                    else {
                         neighbours = getNeighbours(curentNode, weight);
                     }
                     len += 1;
