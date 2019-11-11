@@ -7,7 +7,7 @@ public class MSF {
     static float approx;
     static int s;
     static Random random = new Random();
-    static double SCONST = 1;
+    static double SCONST = 0.5;
     static Scanner sc = new Scanner(System.in);
     
     public static void main(String[] args) {
