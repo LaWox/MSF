@@ -76,6 +76,6 @@ public class MSF {
                 break;
             } 
         }
-        return  (int) Math.ceil(1/ rand);
+        return  (int) Math.floor(1/ rand);
     }
 }
