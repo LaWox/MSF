@@ -7,7 +7,7 @@ public class MSF {
     static float approx;
     static int s;
     static Random random = new Random();
-    static double SCONST = 0.5;
+    static double SCONST = 1;
     static Scanner sc = new Scanner(System.in);
     
     public static void main(String[] args) {
@@ -54,6 +54,9 @@ public class MSF {
         for (int i = 0; i < s; i++) {
             index = random.nextInt(N);
             int X = chooseX();
+            if (X >= whight){
+                break;
+            }
             if (BFS.search(index, X, whight, sc)) {
                 output += 1;
             };
