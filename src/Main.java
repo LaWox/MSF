@@ -1,5 +1,5 @@
 public class Main {
-    public static boolean DEBUG = true;
+    public static boolean DEBUG = false;
     public static String FILENAME = "graph.txt";
 
     public static TestGraph test = null;

@@ -23,7 +23,7 @@ public class BFS{
         queue.add(index);
         ArrayList<Integer> neighbours = new ArrayList<>();
 
-        while(len < maxHops){
+        while(len <= maxHops){
             if(queue.size() != 0){
                 int curentNode = queue.remove();
                 if(visited.get(curentNode) == null){
@@ -38,10 +38,10 @@ public class BFS{
                     len += 1;
                     visited.put(curentNode, true);
 
-                    // add to neighbour array
-                    /*for(Integer node: neighbours){
+                     //add to neighbour array
+                    for(Integer node: neighbours){
                         queue.add(node);
-                    }*/
+                    }
                 }
             }
             // if empty we've explored the subgraph
