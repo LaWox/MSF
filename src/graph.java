@@ -6,7 +6,7 @@ import java.util.Vector;
 public class Graph {
     static StringBuilder sb = new StringBuilder();
     static int N;
-    static double approx = 1.01;
+    static double approx = 1.02;
     static int W;
 
     static String FILENAME = "graph.txt";

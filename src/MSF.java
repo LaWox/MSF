@@ -54,9 +54,6 @@ public class MSF {
         for (int i = 0; i < s; i++) {
             index = random.nextInt(N);
             int X = chooseX();
-            if (X >= whight){
-                break;
-            }
             if (BFS.search(index, X, whight, sc)) {
                 output += 1;
             };

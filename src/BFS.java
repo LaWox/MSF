@@ -39,9 +39,9 @@ public class BFS{
                     visited.put(curentNode, true);
 
                      //add to neighbour array
-                    for(Integer node: neighbours){
-                        queue.add(node);
-                    }
+                    //for(Integer node: neighbours){
+                    //    queue.add(node);
+                    //}
                 }
             }
             // if empty we've explored the subgraph
