@@ -24,30 +24,33 @@ public class BFS{
         ArrayList<Integer> neighbours = new ArrayList<>();
 
         while(len <= maxHops){
-            if(queue.size() != 0){
-                int curentNode = queue.remove();
-                if(visited.get(curentNode) == null){
-                    
-                    if (Main.DEBUG) {
-                        String neighbourData = Main.test.getNode(curentNode);
-                        handleNeighbours(neighbourData, weight);
-                    }
-                    else {
-                        neighbours = getNeighbours(curentNode, weight);
-                    }
-                    len += 1;
-                    visited.put(curentNode, true);
+            if(queue.size() != 0) {
+                    int curentNode = queue.remove();
+                    if (visited.get(curentNode) == null) {
 
-                     //add to neighbour array
-                    //for(Integer node: neighbours){
-                    //    queue.add(node);
-                    //}
-                }
+                        if (Main.DEBUG) {
+                            String neighbourData = Main.test.getNode(curentNode);
+                            handleNeighbours(neighbourData, weight);
+                        } else {
+                            neighbours = getNeighbours(curentNode, weight);
+                        }
+                        len += 1;
+                        visited.put(curentNode, true);
+
+                        //add to neighbour array
+                        //for(Integer node: neighbours){
+                        //    queue.add(node);
+                        //}
+                    }
             }
             // if empty we've explored the subgraph
             else{
                 return true;
             }
+        }
+
+        if(queue.size() == 0){
+            return true;
         }
         
         // we didn't explore the subgraph
