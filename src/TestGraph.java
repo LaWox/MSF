@@ -34,18 +34,20 @@ public class TestGraph{
 
     }
 
-    public String evalAwnser(float awnser) {
+    public String evalAwnser(double awnser) {
         StringBuilder sb = new StringBuilder();
-        int w = Integer.valueOf(nodes.get(nodes.size() - 1));
-        float approx = Float.valueOf(nodes.get(0).split(" ")[1]);
+        int w = Integer.valueOf(nodes.get(nodes.size() - 2));
+        int noTrees = Integer.valueOf(nodes.get(nodes.size() - 1));
+        double approx = Float.valueOf(nodes.get(0).split(" ")[1]);
 
-        sb.append("Awnsewr: " + awnser + " W: " + w);
+        sb.append("Awnsewr: " + awnser + " W: " + w + " no. Trees: " + noTrees);
 
         if (awnser >= w * (2-approx) && awnser <= w * approx) {
             sb.append(" OK!");
         } else {
             sb.append(" NOT OK! :(");
         }
+        sb.append(" " + awnser/w);
 
         return sb.toString();
     }
