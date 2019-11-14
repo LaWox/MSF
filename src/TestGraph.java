@@ -3,12 +3,17 @@ import java.util.Scanner;
 import java.io.*;
 
 public class TestGraph{
+
+    public int countOK;
+    public int countNOT;
     
     ArrayList<String> nodes = new ArrayList<>();
         
 
     public TestGraph(String filepath){
         this.nodes = new ArrayList<>();
+        countNOT=0;
+        countOK=0;
         readFile(filepath, nodes);
     }
 
@@ -42,14 +47,17 @@ public class TestGraph{
 
         sb.append("Awnsewr: " + awnser + " W: " + w + " no. Trees: " + noTrees);
 
+
         if (awnser >= w * (2-approx) && awnser <= w * approx) {
-            sb.append(" OK!");
+            //sb.append(" OK!");
+            countOK++;
         } else {
-            sb.append(" NOT OK! :(");
+            //sb.append(" NOT OK! :(");
+            countNOT++;
         }
         sb.append(" " + awnser/w);
 
-        return sb.toString();
+        return "";
     }
 
     public String getNode(int index){

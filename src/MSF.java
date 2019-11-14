@@ -7,11 +7,12 @@ public class MSF {
     static double approx;
     static int s;
     static Random random = new Random();
-    static double SCONST = 1;
+    static double SCONST = 0.3;
     static Scanner sc = new Scanner(System.in);
     
     public static void main(String[] args) {
         Main.DEBUG = false;
+
         runMSF();
     }
 
@@ -41,8 +42,10 @@ public class MSF {
         W = Integer.valueOf(par[2]);
     }
 
+
     public static double approxMSTweight() {
         double output = N - W;
+
         for (int i = 1; i < W; i++) {
             output += capproxConnectedComps(i);
         }
@@ -70,6 +73,7 @@ public class MSF {
     } 
 
     static void chooseS() {
+
         s = (int) Math.ceil(SCONST  * (1/ (Math.pow(approx, 2))));
 
     }
