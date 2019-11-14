@@ -6,12 +6,14 @@ import java.util.Vector;
 public class Graph {
     static StringBuilder sb = new StringBuilder();
     static int N;
-    static double approx = 1.01;
+    static double approx = 1.1;
     static int W;
 
     static String FILENAME = "graph.txt";
     static int[] Nspan = {100000, 120000};
-    static int[] Wspan = {1, 10};
+    static int[] Wspan = {4, 5};
+    static int[] TreesSpan = {90000, 100000};
+    static int noTrees;
 
     static Random rand = new Random();
 
@@ -28,22 +30,26 @@ public class Graph {
 
     public static void createGraph() {
         init();
-        int n = 0;
-        while (!outSet.isEmpty() || n == 50000) {
+        while (!outSet.isEmpty()) {
             addEdge();
-            n++;
         }
         renderGraph();
         outputGraph();
     }
 
     public static void initSets() {
-        inSet.add(0);
-        graph[0] = new StringBuilder();
-        for (int i = 1; i < N; i++) {
+        for (int i = 0; i < N; i++) {
             graph[i] = new StringBuilder();
             outSet.add(i);
         }
+        noTrees = TreesSpan[0] + rand.nextInt(TreesSpan[1] - TreesSpan[0]);
+        for (int i = 0; i < noTrees; i++) {
+            int outIndex = rand.nextInt(outSet.size());
+            int outNode = outSet.elementAt(outIndex);
+            addToInSet(outNode, outIndex);
+        }
+
+
     }
 
     public static void init() {
@@ -54,6 +60,11 @@ public class Graph {
 
         sb.append(N + " " + approx + " " + W + "\n");
         initSets();
+    }
+
+    public static void addToInSet(int outNode, int outIndex) {
+        inSet.add(outNode);
+        outSet.remove(outIndex);
     }
 
     public static void addEdge() {
@@ -69,8 +80,7 @@ public class Graph {
         graph[inNode].append(" " + outNode + " " + edgeWeight);
         graph[outNode].append(" " + inNode + " " + edgeWeight);
 
-        inSet.add(outNode);
-        outSet.remove(outIndex);
+        addToInSet(outNode, outIndex);
     }
 
     static void renderGraph() {
@@ -79,7 +89,9 @@ public class Graph {
             int length = (strList.length - 1) / 2;
             sb.append(length + strB.toString() + "\n");
         }
-        sb.append(weight);
+        sb.append(weight + "\n");
+        sb.append(noTrees);
+
     }
 
     static void outputGraph() {
