@@ -13,6 +13,7 @@ public class MSF {
     
     public static void main(String[] args) {
         Main.DEBUG = false;
+
         runMSF();
     }
 
@@ -41,6 +42,7 @@ public class MSF {
         approx = Float.valueOf(par[1]) -1;
         W = Integer.valueOf(par[2]);
     }
+
 
     public static double approxMSTweight() {
         double output = 0;
