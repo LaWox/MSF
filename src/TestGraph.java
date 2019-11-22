@@ -34,6 +34,10 @@ public class TestGraph{
 
     }
 
+    public int grtNoTrees() {
+        return Integer.valueOf(nodes.get(nodes.size() - 1));
+    }
+
     public String evalAwnser(double awnser) {
         StringBuilder sb = new StringBuilder();
         int w = Integer.valueOf(nodes.get(nodes.size() - 2));

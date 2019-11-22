@@ -7,8 +7,9 @@ public class MSF {
     static double approx;
     static int s;
     static Random random = new Random();
-    static double SCONST = 1;
+    static double SCONST = 1.3;
     static Scanner sc = new Scanner(System.in);
+    static int trees = 0;
     
     public static void main(String[] args) {
         Main.DEBUG = false;
@@ -42,35 +43,39 @@ public class MSF {
     }
 
     public static double approxMSTweight() {
-        double output = N - W;
+        double output = 0;
         for (int i = 1; i < W; i++) {
             output += capproxConnectedComps(i);
         }
-        return output;
+        approxNumTrees();
+        return output + (N - (trees * W));
     }
 
-    public static double capproxConnectedComps (int whight) {
-        double output = 0;
-        int t = 0;
+    public static void approxNumTrees() {
         int index;
         for (int i = 0; i < s; i++) {
             index = random.nextInt(N);
             int X = chooseX();
-            int res = BFS.search(index, X, whight, sc);
-            if (res == -1) {
-                t += 1;
-                output += 1;
-            } else {
-                output += res;
-            }
-
-            
+            trees += BFS.search(index, X, W, sc);
         }
-        return ((N/s) * output) - ((N/s) * t);
+        trees = 1 + ((N/s) * trees);
+        System.err.println(trees);
+    }
+    
+
+    public static double capproxConnectedComps (int whight) {
+        double output = 0;
+        int index;
+        for (int i = 0; i < s; i++) {
+            index = random.nextInt(N);
+            int X = chooseX();
+            output += BFS.search(index, X, whight, sc);
+        }
+        return (((N)/ (s)) * output);
     } 
 
     static void chooseS() {
-        s = (int) Math.ceil(SCONST  * (1/ (Math.pow(approx, 2))));
+        s = (int) Math.ceil(SCONST * (1/ (Math.pow(approx, 2))));
 
     }
 

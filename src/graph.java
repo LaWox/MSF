@@ -6,13 +6,13 @@ import java.util.Vector;
 public class Graph {
     static StringBuilder sb = new StringBuilder();
     static int N;
-    static double approx = 1.1;
+    static double approx = 1.05;
     static int W;
 
     static String FILENAME = "graph.txt";
-    static int[] Nspan = {100000, 120000};
+    static double[] Nspan = {100000, 100000+1};
     static int[] Wspan = {4, 5};
-    static int[] TreesSpan = {90000, 100000};
+    static int[] TreesSpan = {0, 50000};
     static int noTrees;
 
     static Random rand = new Random();
@@ -53,7 +53,8 @@ public class Graph {
     }
 
     public static void init() {
-        N = Nspan[0] + rand.nextInt(Nspan[1] - Nspan[0]);
+        int i = (int) (Nspan[1] - Nspan[0]);
+        N = (int) Nspan[0] + rand.nextInt(i);
         W = Wspan[0] + rand.nextInt(Wspan[1] - Wspan[0]);
 
         graph = new StringBuilder[N];
