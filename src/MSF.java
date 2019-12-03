@@ -2,18 +2,17 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class MSF {
-    static int W;
-    static int N;
+    static double W;
+    static double N;
     static double approx;
-    static int s;
+    static double s;
     static Random random = new Random();
     static double SCONST = 1.3;
     static Scanner sc = new Scanner(System.in);
-    static int trees = 0;
+    static double trees = 0;
     
     public static void main(String[] args) {
         Main.DEBUG = false;
-
         runMSF();
     }
 
@@ -43,37 +42,36 @@ public class MSF {
         W = Integer.valueOf(par[2]);
     }
 
-
     public static double approxMSTweight() {
         double output = 0;
         for (int i = 1; i < W; i++) {
             output += capproxConnectedComps(i);
         }
         approxNumTrees();
-        return output + (N - (trees * W));
+        return (output + (N - (trees * W)));
     }
 
     public static void approxNumTrees() {
         int index;
+        trees = 0;
         for (int i = 0; i < s; i++) {
-            index = random.nextInt(N);
+            index = random.nextInt((int)(N));
             int X = chooseX();
-            trees += BFS.search(index, X, W, sc);
+            trees += BFS.search(index, X, (int) W, sc);
         }
-        trees = 1 + ((N/s) * trees);
-        System.err.println(trees);
+        trees = ((N/s) * trees);
+        //System.err.println(trees);
     }
-    
 
     public static double capproxConnectedComps (int whight) {
         double output = 0;
         int index;
         for (int i = 0; i < s; i++) {
-            index = random.nextInt(N);
+            index = random.nextInt((int)(N));
             int X = chooseX();
             output += BFS.search(index, X, whight, sc);
         }
-        return (((N)/ (s)) * output);
+        return ((N/ s) * output);
     } 
 
     static void chooseS() {

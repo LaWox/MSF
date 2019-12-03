@@ -6,20 +6,20 @@ import java.util.Vector;
 public class Graph {
     static StringBuilder sb = new StringBuilder();
     static int N;
-    static double approx = 1.05;
+    static double approx = 1.1;
     static int W;
 
     static String FILENAME = "graph.txt";
-    static double[] Nspan = {100000, 100000+1};
+    static double[] Nspan = {100000, 100001};
     static int[] Wspan = {4, 5};
-    static int[] TreesSpan = {0, 50000};
+    static int[] TreesSpan = {1, 2};
     static int noTrees;
 
     static Random rand = new Random();
 
     static StringBuilder[] graph;
 
-    static int weight = 0;
+    static long weight = 0;
 
     static Vector<Integer> inSet = new Vector<Integer>();
     static Vector<Integer> outSet = new Vector<Integer>();
@@ -48,8 +48,6 @@ public class Graph {
             int outNode = outSet.elementAt(outIndex);
             addToInSet(outNode, outIndex);
         }
-
-
     }
 
     public static void init() {

@@ -51,17 +51,16 @@ public class TestGraph{
 
         sb.append("Awnsewr: " + awnser + " W: " + w + " no. Trees: " + noTrees);
 
-
         if (awnser >= w * (2-approx) && awnser <= w * approx) {
-            //sb.append(" OK!");
+            sb.append(" OK!");
             countOK++;
         } else {
-            //sb.append(" NOT OK! :(");
+            sb.append(" NOT OK! :(");
             countNOT++;
         }
         sb.append(" " + awnser/w);
 
-        return "";
+        return sb.toString();
     }
 
     public String getNode(int index){
